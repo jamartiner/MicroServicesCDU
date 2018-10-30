@@ -135,6 +135,7 @@ namespace MicroServicesCDU.Controllers
 
                 var movimientos = await (from m in _context.Movimiento
                                          where m.idProducto == idProducto && DateTime.Now.Subtract(m.Fecha).Days <= cantidadDias
+                                         orderby m.Fecha descending
                                          select m).ToListAsync();
 
                 if (movimientos == null)

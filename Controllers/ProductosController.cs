@@ -304,6 +304,8 @@ namespace MicroServicesCDU.Controllers
                                             where m.idProducto == producto.Numero
                                             select m.Valor).SumAsync() + producto.Cupo;
 
+                valorPagoTotal = producto.Cupo - valorPagoTotal;
+
                 return Ok(valorPagoTotal);
             }
             catch (Exception ex)
