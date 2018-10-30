@@ -1,0 +1,14 @@
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\bin\Debug\netcoreapp2.1\MicroServicesCDU.deps.json
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\bin\Debug\netcoreapp2.1\MicroServicesCDU.runtimeconfig.json
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\bin\Debug\netcoreapp2.1\MicroServicesCDU.runtimeconfig.dev.json
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\bin\Debug\netcoreapp2.1\MicroServicesCDU.dll
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\bin\Debug\netcoreapp2.1\MicroServicesCDU.pdb
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\obj\Debug\netcoreapp2.1\MicroServicesCDU.csproj.CoreCompileInputs.cache
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\obj\Debug\netcoreapp2.1\MicroServicesCDU.RazorAssemblyInfo.cache
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\obj\Debug\netcoreapp2.1\MicroServicesCDU.RazorAssemblyInfo.cs
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\obj\Debug\netcoreapp2.1\MicroServicesCDU.AssemblyInfoInputs.cache
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\obj\Debug\netcoreapp2.1\MicroServicesCDU.AssemblyInfo.cs
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\obj\Debug\netcoreapp2.1\MicroServicesCDU.RazorTargetAssemblyInfo.cache
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\obj\Debug\netcoreapp2.1\MicroServicesCDU.dll
+C:\Users\Personal\Desktop\SEMESTRE 3\LCS\Entregas\Codigo\MicroServicesCDU\MicroServicesCDU\obj\Debug\netcoreapp2.1\MicroServicesCDU.pdb
