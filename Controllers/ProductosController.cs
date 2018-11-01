@@ -314,5 +314,37 @@ namespace MicroServicesCDU.Controllers
                 return new JsonResult(new Respuesta() { Resultado = "Error consultando el valor de pago total del producto.", Mensaje = ex.Message });
             }
         }
+
+        [HttpGet("ActualizarEstadoProducto/{idProducto}/{estado}")]
+        public async Task<IActionResult> ActualizarEstadoProducto([FromRoute] long idProducto, [FromRoute] string estado)
+        {
+            if (!ModelState.IsValid || !Enum.GetNames(typeof(EstadosProducto)).Contains(estado))
+            {
+                return BadRequest(ModelState);
+            }
+
+            var producto = await _context.Producto.FirstOrDefaultAsync(p => p.Numero == idProducto);
+            producto.Estado = estado.ToString();
+
+            _context.Entry(producto).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductoExists(idProducto))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
     }
 }

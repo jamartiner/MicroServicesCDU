@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MicroServicesCDU.Models;
 using MicroServicesCDU.Data;
+using WebApp_CDU.Utilities;
 
 namespace MicroServicesCDU.Controllers
 {
@@ -128,13 +129,16 @@ namespace MicroServicesCDU.Controllers
         {
             try
             {
-                if (!ModelState.IsValid || clave.Length != 4)
+                if (!ModelState.IsValid)
                 {
                     //return BadRequest(ModelState);
                     throw new Exception("Datos incorrectos.");
                 }
 
-                var cliente = await _context.Cliente.FirstOrDefaultAsync(e => e.Identificacion == identificacion && e.Clave == clave);
+                string strClave = HashMD5.FromHexString(clave);
+                strClave = HashMD5.CreateMD5(strClave);
+
+                var cliente = await _context.Cliente.FirstOrDefaultAsync(e => e.Identificacion == identificacion && e.Clave == strClave);
 
                 if (cliente == null)
                 {
@@ -142,6 +146,7 @@ namespace MicroServicesCDU.Controllers
                     throw new Exception("Datos incorrectos.");
                 }
 
+                cliente.Clave = string.Empty;
                 return Ok(cliente);
             }
             catch (Exception ex)
