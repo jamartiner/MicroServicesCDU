@@ -49,8 +49,8 @@ namespace MicroServicesCDU.Controllers
         }
 
         // PUT: api/Clientes/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCliente([FromRoute] long id, [FromBody] Cliente cliente)
+        [HttpPut("ActualizarCliente/{id}")]
+        public async Task<IActionResult> ActualizarCliente([FromRoute] long id, [FromBody] Cliente cliente)
         {
             if (!ModelState.IsValid)
             {
@@ -72,11 +72,13 @@ namespace MicroServicesCDU.Controllers
             {
                 if (!ClienteExists(id))
                 {
-                    return NotFound();
+                    Response.StatusCode = StatusCodes.Status404NotFound;
+                return new JsonResult(new Respuesta() { Resultado = "Error de actualización.", Mensaje = "El cliente no existe." });
                 }
                 else
                 {
-                    throw;
+                    Response.StatusCode = StatusCodes.Status404NotFound;
+                    return new JsonResult(new Respuesta() { Resultado = "Error de actualización.", Mensaje = "Ha ocurrido un error durante la actualización de los datos del cliente." });
                 }
             }
 
@@ -156,34 +158,6 @@ namespace MicroServicesCDU.Controllers
             }
         }
 
-        /*[HttpPost("AutenticarClienteConClave2")]
-        public async Task<IActionResult> AutenticarClienteConClave2(Autenticacion a)
-        {
-            try
-            {
-                if (!ModelState.IsValid || a.ClaveO4UltDigProd.Length != 4)
-                {
-                    //return BadRequest(ModelState);
-                    throw new Exception("Datos incorrectos.");
-                }
-
-                var cliente = await _context.Cliente.FirstOrDefaultAsync(e => e.Identificacion == a.Identificacion && e.Clave == a.ClaveO4UltDigProd);
-
-                if (cliente == null)
-                {
-                    //return NotFound();
-                    throw new Exception("Datos incorrectos.");
-                }
-
-                return Ok(cliente);
-            }
-            catch (Exception ex)
-            {
-                Response.StatusCode = StatusCodes.Status404NotFound;
-                return new JsonResult(new Respuesta() { Resultado = "Error de autenticación con clave.", Mensaje = ex.Message });
-            }
-        }*/
-
         [HttpGet("AutenticarClienteConProducto/{identificacion}/{UDProd}")]
         public async Task<IActionResult> AutenticarClienteConProducto([FromRoute] long identificacion, [FromRoute] string UDProd)
         {
@@ -214,6 +188,39 @@ namespace MicroServicesCDU.Controllers
                 Response.StatusCode = StatusCodes.Status404NotFound;
                 return new JsonResult(new Respuesta() { Resultado = "Error de autenticación con los 4 últimos dígitos de uno de los productos.", Mensaje = ex.Message });
             }
+        }
+
+        [HttpGet("ActualizarCliente/{id}/{ce}/{cel}/{tf}/{dir}/{bar}/{mu}/{dp}")]
+        public async Task<IActionResult> ActualizarCliente([FromRoute] long id, [FromRoute] string ce, [FromRoute] string cel, [FromRoute] string tf, [FromRoute] string dir, [FromRoute] string bar, [FromRoute] string mu, [FromRoute] string dp)
+        {
+            var cliente = await _context.Cliente.FirstOrDefaultAsync(c => c.Identificacion == id);
+            cliente.CorreoElectronico = ce;
+            cliente.Celular = cel;
+            cliente.TelFijo = tf;
+            cliente.Direccion = dir.Replace("NRO", "#");
+            cliente.Barrio = bar;
+            cliente.Municipio = mu;
+            cliente.Departamento = dp;
+
+            _context.Entry(cliente).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ClienteExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
     }
 }
