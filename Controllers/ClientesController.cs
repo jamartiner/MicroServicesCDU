@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MicroServicesCDU.Models;
 using MicroServicesCDU.Data;
-using WebApp_CDU.Utilities;
+using MicroServicesCDU.Utilities;
 
 namespace MicroServicesCDU.Controllers
 {
+    [BasicAuthorize("localhost")]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientesController : ControllerBase
@@ -181,6 +182,7 @@ namespace MicroServicesCDU.Controllers
                     throw new Exception("Datos incorrectos.");
                 }
 
+                cliente.Clave = string.Empty;
                 return Ok(cliente);
             }
             catch (Exception ex)

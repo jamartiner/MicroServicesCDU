@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MicroServicesCDU.Models;
 using MicroServicesCDU.Data;
+using MicroServicesCDU.Utilities;
 
 namespace MicroServicesCDU.Controllers
 {
+    [BasicAuthorize("localhost")]
     [Route("api/[controller]")]
     [ApiController]
     public class MovimientosController : ControllerBase
@@ -123,8 +125,8 @@ namespace MicroServicesCDU.Controllers
             return _context.Movimiento.Any(e => e.IdMovimiento == id);
         }
 
-        [HttpGet("ObtenerMovimientosProducto/{idProducto}/{cantidadDias}")]
-        public async Task<IActionResult> ObtenerMovimientosProducto([FromRoute] long idProducto, [FromRoute] int cantidadDias)
+        [HttpGet("ObtenerMovimientosProducto/{idProducto}/{cantidadDias}/{cantidadMovimientos}")]
+        public async Task<IActionResult> ObtenerMovimientosProducto([FromRoute] long idProducto, [FromRoute] int cantidadDias, [FromRoute] int cantidadMovimientos)
         {
             try
             {
@@ -142,6 +144,11 @@ namespace MicroServicesCDU.Controllers
                 {
                     //return NotFound();
                     throw new Exception("No se encontraron movimientos para este producto.");
+                }
+
+                if (cantidadMovimientos > 0 && movimientos.Count > cantidadMovimientos)
+                {
+                    movimientos = movimientos.GetRange(0, cantidadMovimientos);
                 }
 
                 return Ok(movimientos);

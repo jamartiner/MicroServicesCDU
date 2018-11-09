@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MicroServicesCDU.Models;
 using MicroServicesCDU.Data;
+using MicroServicesCDU.Utilities;
 
 namespace MicroServicesCDU.Controllers
 {
+    [BasicAuthorize("localhost")]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductosController : ControllerBase

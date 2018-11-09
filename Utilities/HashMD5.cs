@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 using System.Security.Cryptography;
 
-namespace WebApp_CDU.Utilities
+namespace MicroServicesCDU.Utilities
 {
     public class HashMD5
     {
